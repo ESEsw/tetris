@@ -17,6 +17,15 @@ int display_menu(void)
 		printf("\n\t\t\t\t\t SELECT : ");
 		scanf("%d",&menu);
 
+		if(menu < 1 || menu > 4)
+		{
+			continue;
+		}
+		else
+		{
+			return menu;
+		}
 	}
+	return 0;
 }
 
