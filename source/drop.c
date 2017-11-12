@@ -1,3 +1,14 @@
 int drop(void);
 
-int drop()
+//drop blocks until collisoned
+
+int drop(void)
+{
+	while(!collision_test(DOWN))
+	{
+		move_block(DOWN);
+	}
+
+
+
+}
