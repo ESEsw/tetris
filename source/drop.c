@@ -9,6 +9,5 @@ int drop(void)
 		move_block(DOWN);
 	}
 
-
-
+	return 0;
 }
