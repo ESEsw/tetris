@@ -24,41 +24,56 @@ int game_start(void)
 		timer.it_interval.tv_sec = 0;
 		timer.it_interval.tv_usec = 1;
 
-		
-		nclude <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
+		//Start a virtual timer. It counts down whenever this process is excuting
+		setitimer(ITIMER_VIRTUAL, &timer,NULL);
 
+		//Do busy work
 
-int main(int argc, char *argv[])
-{
-        int fd;
-        if (argc != 2)
-        {
-                fprintf(stderr,"usage: opentest filename\n");
-                exit(0);
-        }
-        //put your code
-        fd = open(argv[1],O_RDONLY);
+		while(1)
+		{
+			if(game == GAME_END)
+			{
+				timer.it_value.tv.sec = 0;
+				timer.it_value.tv_usec = 0;
+				timer.it_interval.tv_sec = 0;
+				timer.it_interval.tv_usec = 0;
+				setitimer(ITIMER_VIRTUAL,&timer,NULL);
 
-        if( fd == -1) // open failure
-        {
-                perror("error!\n");
-                exit(0);
-        }
-        else //open success
-        {
-                printf("open %s successful\n",argv[1]);
-        }
+				//store as record file
 
-        return 0;
+				printf("\n\n final record : %ld ", point);
+				printf("\n\n Enter the your name : ");
+				scanf("%s%*c",temp_result.name);
+				temp_result.point = point;
+
+				if(temp_result.point >= best_point)
+				{
+					best_point = temp_result.point;
+				}
+				
+				ptime = time(NULL);
+				t = localtime(&ptime);
+
+				temp_result.year = t->tm_year +1900;
+				temp_result.month = t->tm_mon +1;
+				temp_result.day = t->tm_mday;
+				temp_result.hour = t->tm_hour;
+				temp_result.min = t->tm_min;
+
+				fp = open("result","ab");
+				fseek(fp,1,SEEK_END);
+				fwrite(&temp_result,sizeof(struct result),1,fp);
+				fclose(fp);
+
+				x=3,y=0;
+				point = 0;
+				return 1;
+			}
+		}
 
 
 	}
 
 
-
+	return 0;
 }
