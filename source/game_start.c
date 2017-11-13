@@ -28,6 +28,37 @@ int game_start(void)
 		setitimer(ITIMER_VIRTUAL, &timer,NULL);
 
 		//Do busy work
+
+		while(1)
+		{
+			if(game == GAME_END)
+			{
+				timer.it_value.tv.sec = 0;
+				timer.it_value.tv_usec = 0;
+				timer.it_interval.tv_sec = 0;
+				timer.it_interval.tv_usec = 0;
+				setitimer(ITIMER_VIRTUAL,&timer,NULL);
+
+				//store as record file
+
+				printf("\n\n final record : %ld ", point);
+				printf("\n\n Enter the your name : ");
+				scanf("%s%*c",temp_result.name);
+				temp_result.point = point;
+
+				if(temp_result.point >= best_point)
+				{
+					best_point = temp_result.point;
+				}
+				
+				ptime = time(NULL);
+				t = localtime(&ptime);
+
+				
+			}
+		}
+
+
 	}
 
 
