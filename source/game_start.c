@@ -54,7 +54,20 @@ int game_start(void)
 				ptime = time(NULL);
 				t = localtime(&ptime);
 
-				
+				temp_result.year = t->tm_year +1900;
+				temp_result.month = t->tm_mon +1;
+				temp_result.day = t->tm_mday;
+				temp_result.hour = t->tm_hour;
+				temp_result.min = t->tm_min;
+
+				fp = open("result","ab");
+				fseek(fp,1,SEEK_END);
+				fwrite(&temp_result,sizeof(struct result),1,fp);
+				fclose(fp);
+
+				x=3,y=0;
+				point = 0;
+				return 1;
 			}
 		}
 
@@ -62,5 +75,5 @@ int game_start(void)
 	}
 
 
-
+	return 0;
 }
