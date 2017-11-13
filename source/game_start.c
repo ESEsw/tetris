@@ -24,7 +24,10 @@ int game_start(void)
 		timer.it_interval.tv_sec = 0;
 		timer.it_interval.tv_usec = 1;
 
+		//Start a virtual timer. It counts down whenever this process is excuting
+		setitimer(ITIMER_VIRTUAL, &timer,NULL);
 
+		//Do busy work
 	}
 
 
