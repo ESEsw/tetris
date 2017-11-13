@@ -10,7 +10,18 @@ int game_start(void)
 
 	if(game == GAME_START)
 	{
+		init_tetris_table();
+		// install timer, as the signal handler for SIGVTALRM
+		memset(&sa,0,sizeof(sa));
+		sa.sa_handler = &refresh;
+		sigaction(SIGVTALRM, &sa,NULL);
 		
+		//Configure the timer to expire after 250msec
+		timer.it_value.tv_sec = 0;
+		timer.it_value.tv_usec = 1;
+
+		// and every 250msec after that
+
 	}
 
 
