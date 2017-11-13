@@ -21,6 +21,8 @@ int game_start(void)
 		timer.it_value.tv_usec = 1;
 
 		// and every 250msec after that
+		timer.it_interval.tv_sec = 0;
+		timer.it_interval.tv_usec = 1;
 
 	}
 
