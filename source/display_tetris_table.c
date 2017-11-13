@@ -43,4 +43,17 @@ int display_tetris_table()
 			else if((*block_pointer)[0][i][j] == 0) printf(" ");
 		}
 	}
+
+	for(i = 2; i < 21; i++)
+	{
+		printf("\t");
+		for(j = 0; j < 10; j++)
+		{
+			if(j == 0 || j == 9 || (i == 20 && (j>1 || j<9))) printf("@");
+			else if(tetris_table[i][j] == 1) printf("#");
+			else if(tetris_table[i][j] == 0) printf(" ");
+		}
+		printf("\n");
+	}
+	return 0;
 }
