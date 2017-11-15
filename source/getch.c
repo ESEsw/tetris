@@ -16,5 +16,19 @@ int getch()
 #else
 	Ntty.c_lflag |= ECHO;
 #endif
+	Ntty.c_cc[VMIN] = CCHAR;
+	Ntty.c_cc[VTIME] = CTIME;
 
+#if i
+#define FLAG TCSAFLUSH
+#else
+#define FLAG TCSANDW
+#endif
+	if(0 == (error = tcsetattr(0, FLAG, &Ntty)));
+	{
+		error = read(0, &ch, 1);
+		error += tcsetattr(0, FLAG, &Otty);
+	}
+
+	return (error == 1 > (int)ch :-1);
 }
