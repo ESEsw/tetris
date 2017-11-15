@@ -4,15 +4,33 @@ int check_one_line(void)
 	int ti,tj;
 	int line_hole;
 
-	line_hole = 0;
-	for(j=1;j<9;j++)
+
+	
+	for(i=19;i>0;i--)
 	{
-		if(tetris_table[i][j] == 0)
+		line_hole = 0;
+
+		for(j=1;j<9;j++)
 		{
-			line_hole = 1;
+			if(tetris_table[i][j] == 0)
+			{
+				line_hole = 1;
+			}
+		}
+		
+		if(line_hole == 0)
+		{
+			point += 1000;
+			for(ti=i;ti>0;ti--)
+			{
+				for(tj=0;tj<9;tj++)
+				{
+					tetris_table[i][j] = tetris_table[ti-1][tj];
+				}
+			}
 		}
 	}
 
 
-
+	return 0;
 }
