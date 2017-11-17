@@ -36,3 +36,17 @@ int search_result(void)
              break;
          }
      } 
+
+if(find == 0)
+751         printf("\n\n\n\t\t검색된 이름이 없습니다.");
+752 
+753     printf("\n\n\n\t\t게임 메뉴로 돌아가기 : M");
+754     while(1)
+755     {
+756         ch = getch();
+757         if(ch == 77 || ch == 109)
+758             break;
+759     }
+760 
+761     return 0;
+762 } 
