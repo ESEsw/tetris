@@ -23,4 +23,33 @@ int collision_test(int command)
 			temp_block_state %= 4;
             break;
 	}
+
+	for(i = 0; i < 21; i++)
+	{
+		for(j = 0; j < 10; j++)
+		{
+			temp_tetris_table[i][j] = tetris_table[i][j];
+		}
+	}
+
+	for(i = 0, oldy = y; i < 4; i++, oldy++)
+	{
+		for(j = 0, oldx = x; j < 4; j++, oldx++)
+		{
+			if((*block_pointer)[block_state][i][j] == 1){
+				temp_tetris_table[oldy][oldx] = 0;
+			}
+		}
+	}
+
+	for(i = 0; i < 4; i++)
+	{
+		for(j = 0; j < 4; j++)
+		{
+			if(temp_tetris_table[tempy+i][tempx+j] == 1 && (*block_pointer)[temp_block_state][i][j]){
+				return 1;
+			}
+		}
+	}
+	return 0;
 }
