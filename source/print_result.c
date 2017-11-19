@@ -27,3 +27,16 @@ int print_result(void)
                  break;
              }
      } 
+
+     fclose(fp);
+
+     printf("\n\n\t게임 메뉴로 돌아가기 : M");
+     while(1)
+     {
+         ch = getch();
+         if(ch == 77 || ch == 109)
+             break;
+     }
+     return 0;
+ 
+} 
