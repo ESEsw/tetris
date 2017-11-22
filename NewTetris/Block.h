@@ -14,6 +14,12 @@ class Block{
 	static const char * BLOCK;
 	static const char * CLEAR;
 	static Point zero;
+
+	Point current;
+	int left;
+	int right;
+	int bottom;
+	int color;
 	
 
 
