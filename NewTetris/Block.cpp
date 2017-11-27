@@ -58,3 +58,50 @@ const Point Block::block_shape[][4][4] = {
   { { 1, 1 }, { 1, 2 }, { 1, 3 }, { 2, 3 } } //L
 } }; 
 
+Block::Block() {
+ init(rand() % 7);
+}
+
+Point Block::zero = Point();
+
+Block::Block(int type) {
+ init(type);
+}
+
+Block::~Block() {
+ // TODO Auto-generated destructor stub
+}
+void Block::init(int type) {
+ stat = 0;
+ color = type % 7;
+ shape[0] = Block::block_shape[color][stat][0];
+ shape[1] = Block::block_shape[color][stat][1];
+ shape[2] = Block::block_shape[color][stat][2];
+ shape[3] = Block::block_shape[color][stat][3];
+ color += 41;
+ current.x = LEFT + 3;
+ current.y = TOP;
+ prev = current;
+ checkBound();
+}
+
+void Block::transpose() {
+ int s = color - 41;
+ stat = (stat + 1) % 4;
+ shape[0] = Block::block_shape[s][stat][0];
+ shape[1] = Block::block_shape[s][stat][1];
+ shape[2] = Block::block_shape[s][stat][2];
+ shape[3] = Block::block_shape[s][stat][3];
+ checkBound();
+}
+void Block::reversTranspose() {
+
+ int s = color - 41;
+ stat = (stat + 3) % 4;
+ shape[0] = Block::block_shape[s][stat][0];
+ shape[1] = Block::block_shape[s][stat][1];
+ shape[2] = Block::block_shape[s][stat][2];
+ shape[3] = Block::block_shape[s][stat][3];
+ checkBound();
+} 
+
