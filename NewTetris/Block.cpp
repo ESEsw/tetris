@@ -138,3 +138,40 @@ void Block::clear() {
  }
 }
 
+void Block::refresh() {
+
+ clear();
+ print();
+ prev = current;
+}
+
+void Block::print(int x, int y) {
+ for (int i = 0; i < 4; i++) {
+  printColorString(shape[i].x * 2  + x , shape[i].y  + y , color, BLOCK);
+ }
+}
+
+void Block::clear(int x, int y) {
+ for (int i = 0; i < 4; i++) {
+  printColorString(shape[i].x * 2 + x , shape[i].y  + y , COLOR_DEFAULT, CLEAR);
+ }
+}
+
+void Block::checkBound() {
+ int maxX = -10, minX = 10, maxY = -10;
+
+ for (int i = 0; i < 4; i++) {
+  if (shape[i].x > maxX) {
+   maxX = shape[i].x;
+  }
+  if (shape[i].x < minX) {
+   minX = shape[i].x;
+  }
+  if (shape[i].y > maxY) {
+   maxY = shape[i].y;
+  }
+ }
+ left = minX;
+ right = maxX;
+ bottom = maxY;
+}
