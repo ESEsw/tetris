@@ -105,3 +105,36 @@ void Block::reversTranspose() {
  checkBound();
 } 
 
+void Block::moveUp() {
+
+ if (current.y > TOP)
+  current.y--;
+}
+
+void Block::moveDown() {
+
+ if (current.y + bottom < BOTTOM)
+  current.y++;
+
+}
+void Block::moveRight() {
+ if (current.x + right < RIGHT)
+  current.x++;
+}
+void Block::moveLeft() {
+ if (current.x + left > LEFT)
+  current.x--;
+
+}
+void Block::print() {
+ for (int i = 0; i < 4; i++) {
+  printColorString(shape[i].x * 2 + current.x * 2 + zero.x, shape[i].y + current.y + zero.y, color, BLOCK);
+ }
+ prev = current;
+}
+void Block::clear() {
+ for (int i = 0; i < 4; i++) {
+  printColorString(shape[i].x * 2 + prev.x * 2 + zero.x, shape[i].y + prev.y + zero.y, COLOR_DEFAULT, CLEAR);
+ }
+}
+
