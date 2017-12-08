@@ -1,14 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <termios.h>
+#include <time.h>
+#include <sys/types.h>
+#include "myio.h"
+#include "Block.h"
+#include "GameLogic.h"
 
 struct termios initial_settings, new_settings;
 
 int main(int argc,char *argv[])
 {
-	srand(tume(NULL));
+	srand(time(NULL));
+	
+	tcgetattr(0, &initial_settings);
 
-	new_setting = initial_setting;
+	new_settings = initial_settings;
 	new_settings.c_lflag &= ~ICANON;
 	new_settings.c_lflag &= ~ECHO;
 	new_settings.c_lflag &= ~ISIG;
@@ -26,9 +33,6 @@ int main(int argc,char *argv[])
 	tcsetattr(0, TCSANOW, &initial_settings);
 	printf("\033[0m");
 	system("clear");
+	
 	return 0;
-
-	ststem(clear);
-
-
 }
