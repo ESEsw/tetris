@@ -1,6 +1,15 @@
 #include <stdio.h>
 #include "myio.h"
 
+void printfColorString(int x, int y, int color,  const char *  str)
+{
+	if((color >= 40 && color <= 47) || color == 0)
+	{
+		gotoxy(x, y);
+		printf("\033[%dm%s\033[0m", color, str);
+	}
+}
+
 void printColorString(int x, int y, int color, char *str)
 {
 	if((color >= 40 && color <= 47) || color == 0)
@@ -10,14 +19,7 @@ void printColorString(int x, int y, int color, char *str)
 	}
 }
 
-void printfColorString(int x, int y, int color, const char *str)
-{
-	if(color >= 40 && color <= 47) || color == 0)
-	{
-		gotoxy(x, y);
-		printf("\033[%dm%s\033[0m", color, str);
-	}
-}
+
 
 void gotoxy(int x, int y)
 {

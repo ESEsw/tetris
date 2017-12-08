@@ -8,6 +8,9 @@
 #define RIGHT 67
 #define LEFT 68
 
+void printColorString(int x, int y, int color, char * str);
+void printColorString(int x, int y, int color, const char * str);
+
 GameLogic::GameLogic()
 {
 	for(int i = 0; i < HEIGHT + 1; i++)

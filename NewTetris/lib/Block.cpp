@@ -128,7 +128,7 @@ void Block::moveLeft() {
 }
 void Block::print() {
  for (int i = 0; i < 4; i++) {
-  printColorString(shape[i].x * 2 + current.x * 2 + zero.x, shape[i].y + current.y + zero.y, color, BLOCK);
+ printColorString(shape[i].x * 2 + current.x * 2 + zero.x, shape[i].y + current.y + zero.y, color, BLOCK);
  }
  prev = current;
 }
